@@ -11,44 +11,55 @@
     <title>Rock,Paper,Scissors</title>
 </head>
 <body>
-    <h1 class="text-white my-5" style="font-size: 100px;">Play Rock, Paper, Scissors</h1>
-    <div class="options-container">
-        <div class="d-flex flex-column flex-md-row mt-5">
-            <div class="box-option mx-2" id="paper">
-                <div class="line-paper">
+    
+    <div class="m-0 my-5 ">
+        <h1 class="text-white my-5 text-center">Play Rock, Paper, Scissors</h1>
+        <div class="row my-5">
+            <div class="col-md-4">
+                <div class="box-option my-2 mx-md-2" id="paper">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="line-paper d-flex justify-content-center">
+                            Paper
+                        </div>
+                        <i class="fa fa-hand-paper-o h-50 my-2" aria-hidden="true"></i>
+                    </div>
                 </div>
-                <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
             </div>
-    
-            <div class="box-option mx-2" id="rock">
-                <div class="line-rock">
-    
+            <div class="col-md-4">
+                <div class="box-option my-2 mx-md-2" id="rock">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="line-rock d-flex justify-content-center">
+                            Rock
+                        </div>
+                        <i class="fa fa-hand-rock-o h-50 my-2"></i>
+                    </div>
                 </div>
-                <i class="fa fa-hand-rock-o"></i>
             </div>
-    
-            <div class="box-option mx-2" id="scissors">
-                <div class="lin-scissors">
-    
+            <div class="col-md-4">
+                <div class="box-option my-2 mx-md-2" id="scissors">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="line-sciccors d-flex justify-content-center">
+                            Scissors
+                        </div>
+                        <i class="fa fa-hand-scissors-o h-50 my-2" aria-hidden="true"></i>
+                    </div>
                 </div>
-                <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
             </div>
         </div>
-
         <div class="d-flex flex-column text-white-50">
-            <div class="d-flex justify-content-center" style="font-size: 50px;">
-                <div>
+            <div class="d-flex flex-column flex-md-row justify-content-center" style="font-size: 50px;">
+                <div class="my-2 mx-md-2">
                     Person: <span class="badge badge-scondary" id="user-points">3</span>
                 </div>
-                <div class="mx-5 text-white" id="draw">
+                <div class="my-2 mx-md-5 text-white" id="draw">
                     DRAW
                 </div>
-                <div>
+                <div class="my-2 mx-md-2">
                     Computer: <span class="badge badge-scondary" id="computer-points">0</span>
                 </div>
                 
             </div>
-            <button class="btn btn-danger mt-5 h-50" onclick="startGame()" style="font-size: 50px;">Restart</button>
+            <button class="btn btn-danger my-5 h-50" onclick="startGame()" style="font-size: 50px;">Restart</button>
         </div>
     </div>
     <div>
