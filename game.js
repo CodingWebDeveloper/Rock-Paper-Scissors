@@ -12,16 +12,14 @@ let computerCompeter = document.getElementById("competer-computer");
 window.onload = startGame();
 
 function startGame(){
-    setTimeout(function(){
-        draw.style.display = "none";
-        currentUserPoints = 0;
-        currentComputerPoints = 0;
-        computerPoints.innerText = currentComputerPoints;
-        userPoints.innerText = currentUserPoints;
-        console.log("Hello world");
-        userCompeter.style.display = "none";
-        computerCompeter .style.display ="none";
-    }, 1000);
+    draw.style.display = "none";
+    currentUserPoints = 0;
+    currentComputerPoints = 0;
+    computerPoints.innerText = currentComputerPoints;
+    userPoints.innerText = currentUserPoints;
+    userCompeter.style.display = "none";
+    computerCompeter .style.display ="none";
+    removeModalBoxOption();
 };
 
 
@@ -39,15 +37,16 @@ function randomOption(){
 }
 
 scissors.addEventListener("click", function(){
+    draw.style.display = "none";
     var pickedOption = this.id;
 
-    if(pickedOption == randomOption()){
-        draw.style.display ="block";
+    if(checkWinner()){
         return;
     }
-
-    if(pickedOption == "rock"){
-        currentUserPoints +=1;
+    if(pickedOption == randomOption()){
+        draw.style.display ="block";
+    }else if(pickedOption == "rock"){
+        currentUserPoints += 1;
      }
      else{
             currentComputerPoints +=1;
@@ -55,7 +54,6 @@ scissors.addEventListener("click", function(){
 
      computerPoints.innerText = currentComputerPoints;
      userPoints.innerText = currentUserPoints;
-     checkWinner();
 });
 
 paper.addEventListener("click",function(){
@@ -63,32 +61,30 @@ paper.addEventListener("click",function(){
     pickedOption = this.id;
     if(pickedOption == randomOption()){
         draw.style.display ="block";
-        return;
-    }
-
-    if(pickedOption == "scissors"){
+    } else if(pickedOption == "scissors"){
         currentUserPoints +=1;
     } else{
         currentComputerPoints +=1;
     }
 
-    var pickedOption = this.id;
+    checkWinner();
     computerPoints.innerText = currentComputerPoints;
     userPoints.innerText = currentUserPoints;
 
-    checkWinner();
 });
 
 rock.addEventListener("click", function(){
+
     var pickedOption = this.id;
     draw.style.display = "none";
 
-    if(pickedOption == randomOption()){
-        draw.style.display ="block";
+    if(checkWinner()){
         return;
     }
 
-    if(pickedOption == "scissors"){
+    if(pickedOption == randomOption()){
+        draw.style.display ="block";
+    }else  if(pickedOption == "scissors"){
         currentComputerPoints +=1; 
     } else{
         currentUserPoints +=1;
@@ -96,21 +92,37 @@ rock.addEventListener("click", function(){
 
     computerPoints.innerText = currentComputerPoints;
     userPoints.innerText = currentUserPoints;
-    checkWinner();
 })
 
 function checkWinner(){
-    if(currentUserPoints >=5 ){
+    if(currentUserPoints ==5 ){
         userCompeter.style.display = "block";
-        console.log("winner computer");
-        startGame();
-        return;
-    }
-    
-    if(currentComputerPoints >= 5){
+        addModalBoxOption();
+        return true;
+
+    }else if(currentComputerPoints == 5){
         computerCompeter.style.display = "block";
-        console.log("winner user");
-        startGame();
-        return;
+        addModalBoxOption();
+        return true;
+    }
+
+    return false;
+}
+
+function addModalBoxOption(boxOption){
+    var boxOptions = document.getElementsByClassName("box-option");
+    for(var i = 0; i<boxOptions.length; i++){
+        boxOptions[i].setAttribute("data-bs-toggle","modal");
+        boxOptions[i].setAttribute("data-bs-target","#staticBackdrop");
+    }
+}
+
+function removeModalBoxOption(boxOption){
+    var boxOptions = document.getElementsByClassName("box-option");
+    for(var i = 0; i<boxOptions.length; i++){
+        if(boxOptions[i].getAttribute("data-bs-toggle") != null){
+            boxOptions[i].removeAttribute("data-bs-toggle");
+            boxOptions[i].removeAttribute("data-bs-target");
+        }
     }
 }
