@@ -59,6 +59,11 @@ scissors.addEventListener("click", function(){
 paper.addEventListener("click",function(){
     draw.style.display ="none";
     pickedOption = this.id;
+    if(checkWinner())
+    {
+        return;
+    }
+    
     if(pickedOption == randomOption()){
         draw.style.display ="block";
     } else if(pickedOption == "scissors"){
@@ -67,7 +72,6 @@ paper.addEventListener("click",function(){
         currentComputerPoints +=1;
     }
 
-    checkWinner();
     computerPoints.innerText = currentComputerPoints;
     userPoints.innerText = currentUserPoints;
 
